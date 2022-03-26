@@ -4,6 +4,42 @@ import os
 import PySimpleGUI as sg
 
 
+def gui():
+    # colors
+    sg.theme('sandy beach')
+    # general layout
+    layout = [
+        [sg.Text('Enter the YouTube link')],
+        [sg.Text('Link', size =(15, 1)), sg.InputText()],
+        [sg.Submit('MP4'), sg.Submit('MP3'), sg.Button('Cancel')]
+    ]
+
+    window = sg.Window("Omid's YouTube Downloader", layout)
+    event, values = window.read()
+    window.close()
+
+    # check to see if it's a link
+    if values[0].lower().startswith(("https://www.youtube.com/watch", "https://www.youtu.be/watch")):
+        # if it's a link, assign it to yt
+        global yt
+        yt = YouTube(values[0])
+        if event == 'MP4':
+            mp4_maker()
+            sys.exit()
+        if event == 'MP3':
+            mp4_maker()
+            mp3_maker()
+            sys.exit()
+    # on cancel, exit, no matter if link or no link
+    if event == 'Cancel':
+        sys.exit()
+
+    # if it's not a link, then start again
+    else:
+        gui()
+
+
+
 def link_taker():
     # take the link
     link = input('Enter the link: ')
@@ -58,10 +94,10 @@ def choice_question():
             print('Enter a valid format!')
 
 
-#def gui():
-    #sg.Window(title="Hello World!", layout=[[]], margins=(100, 50)).read()
 
 
-link_taker()
-info_spit()
-choice_question()
+
+gui()
+#link_taker()
+#info_spit()
+#choice_question()
