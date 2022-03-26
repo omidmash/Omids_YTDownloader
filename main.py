@@ -10,7 +10,7 @@ def gui():
     # general layout
     layout = [
         [sg.Text('Enter the YouTube link')],
-        [sg.Text('Link', size =(15, 1)), sg.InputText()],
+        [sg.Text('Link', size=(15, 1)), sg.InputText()],
         [sg.Submit('MP4'), sg.Submit('MP3'), sg.Button('Cancel')]
     ]
 
@@ -36,8 +36,8 @@ def gui():
 
     # if it's not a link, then start again
     else:
+        sg.Popup('Please enter a valid URL!', keep_on_top=True)
         gui()
-
 
 
 def link_taker():
@@ -94,10 +94,7 @@ def choice_question():
             print('Enter a valid format!')
 
 
-
-
-
 gui()
-#link_taker()
-#info_spit()
-#choice_question()
+# link_taker()
+# info_spit()
+# choice_question()
