@@ -7,8 +7,12 @@ import PySimpleGUI as sg
 def link_taker():
     # take the link
     link = input('Enter the link: ')
-    global yt
-    yt = YouTube(link)
+    if link.lower().startswith(("https://www.youtube.com/watch", "https://www.youtu.be/watch")):
+        global yt
+        yt = YouTube(link)
+    else:
+        print("Please enter a valid link!")
+        link_taker()
 
 
 def info_spit():
