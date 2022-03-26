@@ -54,8 +54,8 @@ def choice_question():
             print('Enter a valid format!')
 
 
-def gui():
-    sg.Window(title="Hello World!", layout=[[]], margins=(100, 50)).read()
+#def gui():
+    #sg.Window(title="Hello World!", layout=[[]], margins=(100, 50)).read()
 
 
 link_taker()
