@@ -31,7 +31,7 @@ def gui():
             mp3_maker()
             sys.exit()
     # on cancel, exit, no matter if link or no link
-    if event == 'Cancel':
+    elif event == 'Cancel':
         sys.exit()
 
     # if it's not a link, then start again
@@ -76,8 +76,19 @@ def mp3_maker():
     # make it pretty
     audioclip.close()
     videoclip.close()
-    # delete mp4
-    os.remove(mp4_file)
+    # ask and delete mp4
+    layout = [
+        [sg.Text('Should I delete the MP4?')],
+        [sg.Submit('Yes'), sg.Submit('No')]
+    ]
+    window = sg.Window("Omid's YouTube Downloader", layout)
+    event, values = window.read()
+    window.close()
+
+    if event == 'Yes':
+        os.remove(mp4_file)
+    if event == 'No':
+        sys.exit()
 
 
 def choice_question():
@@ -95,6 +106,3 @@ def choice_question():
 
 
 gui()
-# link_taker()
-# info_spit()
-# choice_question()
