@@ -1,3 +1,4 @@
+import math
 from pytube import YouTube
 from moviepy.editor import *
 import os
@@ -98,8 +99,17 @@ def mp3_maker():
         os.remove('tmp.mp4')
     if event == 'No':
         # rename tmp.mp4 to title if user wants to keep both mp4 and mp3.
-        os.rename('tmp.mp4', yt.title + '.mp4')
-        sys.exit()
+        if os.path.isfile(yt.title + '.mp4'):
+            for i in range(1, 10000):
+                if os.path.isfile(yt.title + ' ' + str(i) + '.mp4'):
+                    os.rename('tmp.mp4', yt.title + ' ' + str(i + 1) + '.mp4')
+                    sys.exit()
+                else:
+                    os.rename('tmp.mp4', yt.title + ' ' + str(i) + '.mp4')
+                    sys.exit()
+        else:
+            os.rename('tmp.mp4', yt.title + '.mp4')
+            sys.exit()
 
 
 def choice_question():
