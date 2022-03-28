@@ -27,7 +27,7 @@ def gui():
             mp4_maker()
             sys.exit()
         if event == 'MP3':
-            mp4_maker()
+            mp4_maker_temp()
             mp3_maker()
             sys.exit()
     # on cancel, exit, no matter if link or no link
@@ -64,10 +64,19 @@ def mp4_maker():
     ys.download()
 
 
+def mp4_maker_temp():
+    """TODO check for file duplicate. If the file exist, then it is renamed."""
+    ys = yt.streams.get_highest_resolution()
+    ys.download()
+    # rename the title of the video.mp to tmp.mp4
+    os.rename(yt.title + '.mp4', 'tmp.mp4')
+
+
 def mp3_maker():
     # grab the title
     title = yt.title
-    mp4_file = title + '.mp4'
+    # it is the temporary file
+    mp4_file = 'tmp.mp4'
     mp3_file = title + '.mp3'
     # convert it
     videoclip = VideoFileClip(mp4_file)
@@ -86,8 +95,10 @@ def mp3_maker():
     window.close()
 
     if event == 'Yes':
-        os.remove(mp4_file)
+        os.remove('tmp.mp4')
     if event == 'No':
+        # rename tmp.mp4 to title if user wants to keep both mp4 and mp3.
+        os.rename('tmp.mp4', yt.title + '.mp4')
         sys.exit()
 
 
