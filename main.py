@@ -67,9 +67,9 @@ def mp4_maker():
 def mp4_maker_temp():
     """TODO check for file duplicate. If the file exist, then it is renamed."""
     ys = yt.streams.get_highest_resolution()
-    ys.download()
+    ys.download(filename='tmp.mp4')
     # rename the title of the video.mp to tmp.mp4
-    os.rename(yt.title + '.mp4', 'tmp.mp4')
+    # os.rename(yt.title + '.mp4', 'tmp.mp4')
 
 
 def mp3_maker():
