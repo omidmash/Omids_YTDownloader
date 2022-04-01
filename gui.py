@@ -5,7 +5,6 @@ import os
 import PySimpleGUI as sg
 
 
-# TODO pressing x should not return an error!
 def gui():
     # colors
     sg.theme('sandy beach')
@@ -21,6 +20,9 @@ def gui():
     window.close()
 
     # check to see if it's a link
+    if event is None:
+        sys.exit()
+
     if values[0].lower().startswith(("https://www.youtube.com/watch", "https://www.youtu.be/watch")):
         # if it's a link, assign it to yt
         global yt
