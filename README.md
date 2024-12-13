@@ -1,4 +1,5 @@
 # Omid's YTDownloader
+## Deprecated
 Simple YouTube downloader that downloads MP4 or MP3.
 Do not use this program to download stuff illegaly. This program is made purely for educational purposes. I do not condone piracy.
 
